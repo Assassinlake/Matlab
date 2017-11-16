@@ -1,0 +1,27 @@
+function [ G, B ] = Fitting( n, m )
+%Fitting interpolation
+G = zeros(n+1, n+1);
+B = zeros(n+1,1);
+for j = 1:(n+1) 
+    for i = 1:m; 
+        B(j,1)=B(j,1)+(x(i).^(j-1)).*y(i); 
+    end; 
+end
+
+for k = 1:n+1
+    for j = 1:n+1
+        for i = 1:m; 
+            G(j,k)=G(j,k)+(x(i).^(j-1+k-1)); 
+        end; 
+    end;
+end;
+G(1,1)=m;
+a=G^-1*B
+XX=x(1):(x(m)-x(1))/500:x(m);
+for j=1:n
+    for i=1:501 
+        YY(i) = YY(i)+a(j).*XX(i).^(j-1); 
+    end;
+end;
+
+
