@@ -1,6 +1,6 @@
 function [ G, B ] = Fitting( n, m )
 %Fitting interpolation
-G = zeros(n+1, n+1);
+G = zeros(n+1, n+1);    //n is order
 B = zeros(n+1,1);
 for j = 1:(n+1) 
     for i = 1:m; 
