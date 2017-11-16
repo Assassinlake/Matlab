@@ -1,0 +1,30 @@
+function [ Y ] = Lagrange( X, x, y, m, n )
+%Lagrange interpolation
+
+k=1;
+while (X > x(k) & k < m);
+    k=k+1;
+end;
+b= floor(k-(n+1)/2);
+e=b+n;
+if b < 1;
+    b=1;
+    e=n+1;
+end;
+if e > m;
+    e=m;
+    b=e-n;
+end;
+S=0; 
+for i=b:e;
+    p=y(i); 
+    for j=b:e; 
+        if i~=j;
+            p=p.*(X-x(j))/(x(i)-x(j)); 
+        end; 
+    end; 
+    S=S+p; 
+end;
+Y=S;
+end
+
